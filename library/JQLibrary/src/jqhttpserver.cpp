@@ -954,10 +954,7 @@ JQHttpServer::TcpServerManage::TcpServerManage(const int &handleMaxThreadCount):
 
 JQHttpServer::TcpServerManage::~TcpServerManage()
 {
-    if ( this->isRunning() )
-    {
-        this->deinitialize();
-    }
+    Destory();
 }
 
 bool JQHttpServer::TcpServerManage::listen(const QHostAddress &address, const quint16 &port)
@@ -1014,6 +1011,13 @@ void JQHttpServer::TcpServerManage::onFinish()
     this->mutex_.unlock();
 }
 
+void JQHttpServer::TcpServerManage::Destory()
+{
+    if ( this->isRunning() )
+    {
+        this->deinitialize();
+    }
+}
 // SslServerManage
 #ifndef QT_NO_SSL
 namespace JQHttpServer

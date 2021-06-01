@@ -220,3 +220,9 @@ contains( QT, webenginewidgets ) : exists( $$PWD/src/JQWebEngine.cpp ) {
         SOURCES *= $$PWD/src/JQWebEngine.cpp
     }
 }
+
+HEADERS += \
+    $$PWD/include/win.h
+
+SOURCES += \
+    $$PWD/src/win.cpp

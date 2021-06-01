@@ -219,6 +219,7 @@ public:
     ~TcpServerManage();
 
     bool listen( const QHostAddress &address, const quint16 &port );
+    void Destory();
 
 private:
     bool isRunning();
