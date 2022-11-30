@@ -1,0 +1,59 @@
+<!--
+ * @Author: lexin Fang
+ * @Date: 2021-05-12 15:02:40
+ * @LastEditors: lexin Fang
+ * @LastEditTime: 2021-05-13 16:01:43
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      width: 400px;
+      height: 300px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- <a href="hdps://"></a> -->
+
+</body>
+<script>
+  function openServe() {
+    var a = document.createElement('a');
+    a.setAttribute('href', 'hduk://');
+    a.setAttribute('id', 'js_a_lx');
+    a.style.display = 'none'
+      //防止反复添加
+    if (document.getElementById('js_a_lx')) {
+      document.body.removeChild(document.getElementById('js_a_lx'));
+    }
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      fn1()
+    }, 1000)
+  }
+  openServe()
+
+  function fn1() {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        var data = xmlHttp.responseText;
+        console.log(data);
+      }
+    }
+    xmlHttp.open("GET", "http://127.0.0.1:23412", true);            
+    xmlHttp.send();
+  }
+</script>
+
+</html>
