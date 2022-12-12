@@ -1,0 +1,95 @@
+<!--
+ * @Author: lexin Fang
+ * @Date: 2021-05-12 15:02:40
+ * @LastEditors: lexin Fang
+ * @LastEditTime: 2021-05-13 16:01:43
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 400px;
+            height: 300px;
+        }
+        
+        .box {
+            display: flex;
+            padding: 20px;
+            align-items: center;
+        }
+        
+        .input {
+            width: 1000px;
+        }
+        
+        .btn {
+            width: 60px;
+            height: 30px;
+            background-color: cornflowerblue;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 5px;
+            margin: 0 20px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <a href="hdps://"></a> -->
+    <div class="box">
+        <input type="text" class="input" id="input">
+        <div class="btn" id="btn">点击</div>
+        <span class="value" id="value"></span>
+    </div>
+
+</body>
+<script>
+    function openServe(params) {
+        var a = document.createElement('a');
+        a.setAttribute('href', 'hduk://' + params);
+        a.setAttribute('id', 'js_a_lx');
+        a.style.display = 'none'
+            //防止反复添加
+        if (document.getElementById('js_a_lx')) {
+            document.body.removeChild(document.getElementById('js_a_lx'));
+        }
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            fn1()
+        }, 1000)
+    }
+
+    function fn1() {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                var data = xmlHttp.responseText;
+                console.log(data);
+            }
+        }
+        xmlHttp.open("GET", "http://127.0.0.1:23412", true);
+        xmlHttp.send();
+    }
+
+    function btn() {
+        let btn = document.getElementById('btn'),
+            input = document.getElementById('input'),
+            value = document.getElementById('value')
+        btn.onclick = function() {
+            openServe(input.value)
+        }
+    }
+    btn()
+</script>
+
+</html>
