@@ -48,34 +48,36 @@ Root:HKCR;Subkey:hduk\shell;ValueType:none;Flags: uninsdeletekey
 Root:HKCR;Subkey:hduk\shell\open\;ValueType:none;Flags: uninsdeletekey
 Root:HKCR;Subkey:hduk\shell\open\command;ValueType:string;ValueData:"""{app}\{#MyAppExeName}"" ""%1""";Flags: uninsdeletekey
 
+
+
 [Icons]
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
  
-;[Code]
-;var
-; vc_redistx86: Boolean;
+[Code]
+var
+ vc_redistx86: Boolean;
 
-;function InitializeSetup(): Boolean;
-;begin
-;  if RegValueExists(HKCR, '\Installer\Dependencies\VC,redist.x86,x86,14.26,bundle', 'Version') // Microsoft Visual C++ 2005-2019 Redistributable X86
-;then
-;    begin
-;        vc_redistx86 := false;
-;    end
-;else
-;    begin
-;        vc_redistx86 := true;
-;    end;
-;  result := true; 
-;end;
-;function CheckVcredistx86(): Boolean;
-;begin
-;  result := vc_redistx86;
-;end;
+function InitializeSetup(): Boolean;
+begin
+  if RegValueExists(HKCR, '\Installer\Dependencies\VC,redist.x86,x86,14.26,bundle', 'Version') // Microsoft Visual C++ 2005-2019 Redistributable X86
+then
+    begin
+        vc_redistx86 := false;
+    end
+else
+    begin
+        vc_redistx86 := true;
+    end;
+  result := true; 
+end;
+function CheckVcredistx86(): Boolean;
+begin
+  result := vc_redistx86;
+end;
 
-;[Run]
-;Filename: "{app}\vc_redist.x86.exe"; Description: "Setting VC environment variables"; Check: CheckVcredistx86
+[Run]
+Filename: "{app}\vc_redist.x86.exe"; Description: "Setting VC environment variables"; Check: CheckVcredistx86
 
 
 [Run]
